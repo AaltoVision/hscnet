@@ -9,6 +9,7 @@ Moreover, for large-scale outdoor localization on the Aachen Day-Night dataset, 
 
 ## Source Code
 [GitHub repo](https://github.com/AaltoVision/hscnet)
+(coming soon...)
 
 ## BibTeX Citation
 
