@@ -28,10 +28,35 @@ We currently support [7-Scenes](https://www.microsoft.com/en-us/research/project
 
 You will need to download the datasets from the websites, and we provide a [data package]() which contains other necessary files for reproducing our results. Note that for the Cambridge Landmarks dataset, you will also need to rename the files according to the `train/test.txt` files and put them in the `train/test` folders. And the depth maps we used for this dataset are from [DSAC++](https://github.com/vislearn/LessMore). The provided label maps are obtained by running  [k-means](https://docs.scipy.org/doc/scipy/reference/generated/scipy.cluster.vq.kmeans.html) hierarchically on the 3D points.
 
-## Training 
+
 
 
 ## Evaluation
+The trained models for the main experiments in the paper can be downloaded [here]().
+
+To evaluate on a scene from a dataset:
+
+```bash
+python eval.py \
+        --model [hscnet|scrnet] \
+        --dataset [7S|12S|Cambridge|i7S|i12S|i19S] \
+        --scene scene_name \
+        --checkpoint /path/to/saved/model/ \
+        --data_path /path/to/data/
+```
+
+## Training 
+You can train the hierarchical scene coordinate network or the baseline regression network by running the following command:
+
+```bash
+python train.py \
+        --model [hscnet|scrnet] \
+        --dataset [7S|12S|Cambridge|i7S|i12S|i19S] \
+        --scene scene_name \ # not required for the combined scenes
+        --n_iter number_of_training_iterations \
+        --data_path /path/to/data/
+```
+
 
 ## License
 
