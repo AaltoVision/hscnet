@@ -5,7 +5,6 @@ import random
 import numpy as np
 import cv2
 from torch.utils import data
-import scipy.io as spio
 
 from .utils import *
 
