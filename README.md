@@ -5,6 +5,17 @@ This is the PyTorch implementation of our paper, a hierarchical scene coordinate
 Xiaotian Li, Shuzhe Wang, Yi Zhao, Jakob Verbeek, Juho Kannala    
 
 ## Setup
+Python3 and the following packages are required:
+```
+cython
+numpy
+pytorch
+opencv
+tqdm
+imgaug
+```
+
+
 
 ## License
 
