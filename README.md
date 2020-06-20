@@ -15,7 +15,10 @@ tqdm
 imgaug
 ```
 
-
+It is recommended to use a conda environment:
+1. Install anaconda or miniconda.
+2. Create the environment: `conda env create -f environment.yml`.
+3. Activate the environment: `conda activate hscnet`.
 
 To run the evaluation script, you will need to build the cython module:
 
@@ -63,7 +66,7 @@ python train.py \
 ## License
 
 Copyright (c) 2020 AaltoVision.  
-This code is released under the [MIT License][LICENSE].
+This code is released under the [MIT License](LICENSE).
 
 ## Acknowledgements
 
