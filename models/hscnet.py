@@ -3,7 +3,7 @@ import torch.nn as nn
 
 def one_hot(x, N=25):   
     one_hot = torch.FloatTensor(x.size(0), N, x.size(1), 
-                                x.size(2)).zero_().cuda()
+                                x.size(2)).zero_().to(x.device)
     one_hot = one_hot.scatter_(1, x.unsqueeze(1), 1)           
     return one_hot
 

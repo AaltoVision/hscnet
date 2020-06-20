@@ -104,10 +104,11 @@ def eval(args):
 
     # prepare model
     torch.set_grad_enabled(False)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = get_model(args.model, args.dataset)
     model_state = torch.load(args.checkpoint)['model_state']
     model.load_state_dict(model_state)
-    model.cuda()
+    model.to(device)
     model.eval()
     
     # start evaluation
@@ -121,9 +122,9 @@ def eval(args):
             np.expand_dims(yy,axis=2)), axis=2)
     for _, (img, pose) in enumerate(dataloader):
         if args.dataset == 'Cambridge':
-            img = img[:,:,:,106:106+640].cuda()
+            img = img[:,:,:,106:106+640].to(device)
         else:
-            img = img.cuda()
+            img = img.to(device)
         if args.model == 'hscnet':
             coord, lbl_2, lbl_1 = model(img)
             lbl_1 = torch.argmax(lbl_1, dim=1)

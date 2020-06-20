@@ -49,9 +49,10 @@ def train(args):
             w1, w2, w3 = 1, 1, 10
 
     # prepare model and optimizer
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = get_model(args.model, args.dataset)
     model.init_weights()
-    model.cuda()
+    model.to(device)
     
     optimizer = torch.optim.Adam(model.parameters(), lr=args.init_lr, eps=1e-8, 
                                  betas=(0.9, 0.999))
@@ -108,15 +109,15 @@ def train(args):
                 continue
             optimizer.zero_grad()
 
-            img = img.cuda()
-            coord = coord.cuda()
-            mask = mask.cuda()
+            img = img.to(device)
+            coord = coord.to(device)
+            mask = mask.to(device)
 
             if args.model == 'hscnet':
-                lbl_1 = lbl_1.cuda()
-                lbl_2 = lbl_2.cuda()
-                lbl_1_oh = lbl_1_oh.cuda()
-                lbl_2_oh = lbl_2_oh.cuda()
+                lbl_1 = lbl_1.to(device)
+                lbl_2 = lbl_2.to(device)
+                lbl_1_oh = lbl_1_oh.to(device)
+                lbl_2_oh = lbl_2_oh.to(device)
                 coord_pred, lbl_2_pred, lbl_1_pred = model(img,lbl_1_oh,
                                                            lbl_2_oh)
                 lbl_1_loss = cls_loss(lbl_1_pred, lbl_1, mask)
@@ -168,7 +169,9 @@ if __name__ == '__main__':
     parser.add_argument('--scene', nargs='?', type=str, default='heads', 
                         help='Scene')
     parser.add_argument('--n_iter', nargs='?', type=int, default=900000,
-                        help='# of the iterations')
+                        help='# of iterations (to reproduce the results from ' \
+                        'the paper, 300K for 7S and 12S, 600K for ' \
+                        'Cambridge, 900K for the combined scenes)')
     parser.add_argument('--init_lr', nargs='?', type=float, default=1e-4,
                         help='Initial learning rate')
     parser.add_argument('--batch_size', nargs='?', type=int, default=1,
