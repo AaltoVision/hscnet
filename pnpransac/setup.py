@@ -10,7 +10,6 @@ from Cython.Build import cythonize
 cv_include_dir = os.path.join(sys.prefix, 'include')
 cv_library_dir = os.path.join(sys.prefix, 'lib')
 
-
 ext_modules = [
     Extension(
         "pnpransac",
