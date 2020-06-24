@@ -6,30 +6,21 @@ from distutils.extension import Extension
 
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
-import numpy as np
 
-# Find opencv libraries in lib_folder
-lib_folder = os.path.join(sys.prefix, 'lib')
-cvlibs = list()
-for file_name in glob(os.path.join(lib_folder, 'libopencv_*')):
-    cvlibs.append(file_name.split('.')[0])
-cvlibs = list(set(cvlibs))
-cvlibs = ['-L{}'.format(lib_folder)] \
-            + ['opencv_{}'.format(cvlib.split(os.path.sep)[-1]\
-                .split('libopencv_')[-1]) for cvlib in cvlibs]
+# where to find opencv headers and libraries
+cv_include_dir = os.path.join(sys.prefix, 'include')
+cv_library_dir = os.path.join(sys.prefix, 'lib')
+
 
 ext_modules = [
     Extension(
         "pnpransac",
         sources=["pnpransacpy.pyx"],
         language="c++",
-        include_dirs=[np.get_include(),
-                        os.path.join(sys.prefix, 'include'),
-                        ],
-        library_dirs=[lib_folder],
-        libraries=cvlibs,
+        include_dirs=[cv_include_dir],
+        library_dirs=[cv_library_dir],
+        libraries=['opencv_core','opencv_calib3d'],
         extra_compile_args=['-fopenmp','-std=c++11'],
-        extra_link_args=['-fopenmp'],
     )
 ]
 
