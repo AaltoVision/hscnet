@@ -1,6 +1,5 @@
 import sys
 import os
-from glob import glob
 from distutils.core import setup
 from distutils.extension import Extension
 
