@@ -62,7 +62,7 @@ def train(args):
         if os.path.isfile(args.resume):
             print("Loading model and optimizer from checkpoint '{}'".format\
                   (args.resume))
-            checkpoint = torch.load(args.resume)
+            checkpoint = torch.load(args.resume, map_location=device)
             model.load_state_dict(checkpoint['model_state'])
             optimizer.load_state_dict(checkpoint['optimizer_state'])
             print("Loaded checkpoint '{}' (epoch{})".format(args.resume, 

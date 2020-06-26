@@ -106,7 +106,8 @@ def eval(args):
     torch.set_grad_enabled(False)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = get_model(args.model, args.dataset)
-    model_state = torch.load(args.checkpoint)['model_state']
+    model_state = torch.load(args.checkpoint, 
+                map_location=device)['model_state']
     model.load_state_dict(model_state)
     model.to(device)
     model.eval()
