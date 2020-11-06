@@ -10,8 +10,16 @@ Moreover, for large-scale outdoor localization on the Aachen Day-Night dataset, 
 ## Source Code
 [GitHub repo](https://github.com/AaltoVision/hscnet)
 
-## Example Video
-![teaser](teaser.gif)
+## Sample Results (7-Scenes)
+<p float="left">
+  <img src="chess.gif" width="200" />
+  <img src="fire.gif" width="200" /> 
+  <img src="heads.gif" width="200" />
+  <img src="office.gif" width="200" />
+  <img src="pumpkin.gif" width="200" />
+  <img src="redkitchen.gif" width="200" /> 
+  <img src="stairs.gif" width="200" />
+</p>
 
 ## BibTeX Citation
 
